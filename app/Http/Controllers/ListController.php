@@ -9,6 +9,11 @@ class ListController extends Controller
 {
     public function createTask(Request $request)
     {
+        $request->validate([
+            'task_name'        => 'required|string|max:255',
+            'task_description' => 'nullable|string',
+        ]);
+
         $taskName          = $request->input('task_name');
         $taskDescription   = $request->input('task_description');
 
@@ -30,7 +35,7 @@ class ListController extends Controller
     public function updateTask(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 

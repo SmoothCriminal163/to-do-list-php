@@ -22,8 +22,8 @@
             border-radius: 8px;
             width: 100%;
             max-width: 600px;
-            overflow-y: auto; /* Ensure scrollability */
-            max-height: 90vh;  /* Ensure it doesn't exceed viewport height */
+            overflow-y: auto;
+            max-height: 90vh;
         }
         h1 {
             margin: 0 0 20px;
@@ -32,26 +32,30 @@
             color: #007bff;
         }
         .todo-input {
-            display: flex;
             margin-bottom: 20px;
         }
-        .todo-input input {
-            flex: 1;
+        .todo-input form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .todo-input input, .todo-input button {
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        .todo-input .input-group-append button {
-            padding: 10px 20px;
-            font-size: 16px;
+        .todo-input input:focus, .todo-input button:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .todo-input button {
             border: none;
             background-color: #007bff;
             color: white;
-            border-radius: 4px;
             cursor: pointer;
         }
-        .todo-input .input-group-append button:hover {
+        .todo-input button:hover {
             background-color: #0056b3;
         }
         .list-group-item {
@@ -69,8 +73,8 @@
             font-size: 14px;
             padding: 5px 10px;
         }
-        .description {
-            margin-top: 10px;
+        .list-group-item p {
+            margin: 10px 0;
             background: #f9f9f9;
             padding: 10px;
             border-radius: 4px;
@@ -98,15 +102,27 @@
 <body>
 <div class="container">
     <h1>To-Do List</h1>
+
+    <!-- Display Validation Errors -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="todo-input">
         <form action="{{ route('tasks.create') }}" method="POST" class="mb-4">
             @csrf
-            <input name="task_name" type="text" placeholder="Add a new task">
-            <input name="task_description" type="text" class="form-control" placeholder="Add a description">
+            <input name="task_name" type="text" placeholder="Add a new task" value="{{ old('task_name') }}">
+            <input name="task_description" type="text" class="form-control" placeholder="Add a description" value="{{ old('task_description') }}">
             <button type="submit">Add</button>
         </form>
     </div>
-    <ul class="todo-list">
+    <ul class="todo-list list-group">
         @foreach ($allTasks as $task)
             <li class="list-group-item">
                 <div class="d-flex justify-content-between align-items-center">
