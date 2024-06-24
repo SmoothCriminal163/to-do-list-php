@@ -77,6 +77,29 @@ The application has the following routes:
 
 ## Screenshots
 
+### Home Page
+![Home Page](screenshots/home_page.png)
+*This is the initial view of the application where you can add new tasks.*
+
+### Home Page with Error
+![Home Page Error](screenshots/home_page_error.png)
+*An error message is displayed if you try to add a task without a title.*
+
+### Home Page with Example Data
+![Home Page Example Data](screenshots/home_page_example_data.png)
+*Here you can see the list of tasks added to the application.*
+
+### Home Page with Example Data Inserted
+![Home Page Example Data Inserted](screenshots/home_page_example_data_inserted.png)
+*Shows a new task that has been added to the list.*
+
+### Home Page Updating Description
+![Home Page Updating Description](screenshots/home_page_example_data_updating_description.png)
+*Shows the interface for updating the description of an existing task.*
+
+### Home Page with Updated Description
+![Home Page Updated Description](screenshots/home_page_example_data_updated_description.png)
+*Displays the updated description of an existing task.*
 
 ## Contributing
 
